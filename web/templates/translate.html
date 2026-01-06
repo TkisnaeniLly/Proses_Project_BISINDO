@@ -1,120 +1,109 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Translate Bahasa Isyarat</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Translate Bahasa Isyarat</title>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-  <body class="fade-in">
-    <!-- TOP RIGHT MENU -->
-    <div class="top-menu">
-      <a href="#">Akun</a>
-      <a href="#">Tentang Kami</a>
-    </div>
+<body class="fade-in realtime-page">
 
-    <!-- NAVBAR -->
-    <nav class="main-nav">
-  <a href="/">Home</a>
-
-  <div class="nav-dropdown">
-    <a href="#" class="active">Translate</a>
-    <div class="dropdown-content">
-      <a href="/translate/realtime">Real-Time</a>
-      <a href="/translate/upload">Upload Gambar</a>
-    </div>
+  <!-- TOP MENU -->
+  <div class="top-menu">
+    <a href="#">Akun</a>
+    <a href="#">Tentang Kami</a>
   </div>
 
-  <a href="/tutorial">Tutorial</a>
-</nav>
+  <!-- NAVBAR -->
+  <nav class="main-nav">
+    <a href="/">Home</a>
 
+    <div class="nav-dropdown">
+      <a href="#" class="active">Translate</a>
+      <div class="dropdown-content">
+        <a href="/translate/realtime">Real-Time</a>
+        <a href="/translate/upload">Upload Gambar</a>
+      </div>
+    </div>
 
-    <!-- HEADER -->
-    <header class="floating">
-      <h1>Sistem Translasi Bahasa Isyarat</h1>
-      <p>Grub Kartini ✨</p>
-    </header>
+    <a href="/tutorial">Tutorial</a>
+  </nav>
 
-    <!-- TRANSLATE SECTION -->
-    <section class="translate-section">
-  <h2 class="section-title">Sistem Translasi Bahasa Isyarat</h2>
-  <p class="section-desc">
-    Pastikan area tangan masuk ke dalam area webcam.
-  </p>
+  <!-- HEADER -->
+  <header class="floating">
+    <h1>Sistem Translasi Bahasa Isyarat</h1>
+    <p>Grup Kartini ✨</p>
+  </header>
 
-  <div class="translate-container">
+  <!-- TRANSLATE REALTIME -->
+  <section class="translate-section">
+    <h2 class="section-title">Translate Real-Time</h2>
+    <p class="section-desc">
+      Pastikan tangan terlihat jelas di area kamera.
+    </p>
 
-  <!-- KIRI: CAMERA -->
-  <div class="camera-box">
+    <div class="translate-container">
+
+     <!-- CAMERA -->
+<div class="camera-box realtime-camera">
   <video id="video" autoplay muted playsinline></video>
-  <div id="loading" class="loader"></div>
-</div>
 
-
-  <!-- KANAN: OUTPUT -->
-  <div class="output-box">
-    <div class="output-card">
-      <h4>Identifikasi Huruf</h4>
-      <div class="output-field">-</div>
-    </div>
-
-    <div class="output-card">
-      <h4>Output Kata</h4>
-      <div class="output-field">-</div>
-    </div>
+  <!-- LOADING TENGAH -->
+  <div id="loading" class="loader-center">
+    <div class="spinner"></div>
+    <p>Mengaktifkan kamera...</p>
   </div>
-
 </div>
 
 
-  <!-- BUTTON -->
-  <button id="toggleCam" class="btn-start">Start</button>
-</section>
+    </div>
 
+    <!-- BUTTON -->
+    <button id="toggleCam" class="btn-start">Start</button>
+  </section>
 
-    <!-- FOOTER -->
-   <script>
-const video = document.getElementById("video");
-const loading = document.getElementById("loading");
-const toggleBtn = document.getElementById("toggleCam");
+  <!-- SCRIPT CAMERA -->
+  <script>
+    const video = document.getElementById("video");
+    const loading = document.getElementById("loading");
+    const toggleBtn = document.getElementById("toggleCam");
 
-let stream = null;
-let isCameraOn = false;
+    let stream = null;
+    let isCameraOn = false;
 
-toggleBtn.addEventListener("click", async () => {
-  if (!isCameraOn) {
-    try {
-      loading.style.display = "block";
+    toggleBtn.addEventListener("click", async () => {
+      if (!isCameraOn) {
+        try {
+          loading.style.display = "block";
 
-      stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "user" },
-      });
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" }
+          });
 
-      video.srcObject = stream;
-      video.style.display = "block";
-      loading.style.display = "none";
+          video.srcObject = stream;
+          video.style.display = "block";
+          loading.style.display = "none";
 
-      toggleBtn.textContent = "Stop";
-      isCameraOn = true;
-    } catch (err) {
-      alert("Kamera tidak bisa diakses!");
-    }
-  } else {
-    stream.getTracks().forEach(track => track.stop());
-    video.style.display = "none";
-    toggleBtn.textContent = "Start";
-    isCameraOn = false;
-  }
-});
-</script>
+          toggleBtn.textContent = "Stop";
+          isCameraOn = true;
+        } catch (err) {
+          alert("Kamera tidak bisa diakses!");
+        }
+      } else {
+        stream.getTracks().forEach(track => track.stop());
+        video.style.display = "none";
+        toggleBtn.textContent = "Start";
+        isCameraOn = false;
+      }
+    });
+  </script>
 
-<footer>
-  Gunakan Website kami dengan bijak!
-</footer>
-  </body>
+  <!-- FOOTER -->
+  <footer>
+    Gunakan Website kami dengan bijak!
+  </footer>
+
+</body>
 </html>

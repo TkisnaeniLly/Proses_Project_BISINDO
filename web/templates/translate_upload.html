@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Translate Upload Gambar</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="fade-in">
+
+  <!-- TOP MENU -->
+  <div class="top-menu">
+    <a href="#">Akun</a>
+    <a href="#">Tentang Kami</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="main-nav">
+    <a href="/">Home</a>
+
+    <div class="nav-dropdown">
+      <a href="#" class="active">Translate</a>
+      <div class="dropdown-content">
+        <a href="/translate/realtime">Real-Time</a>
+        <a href="/translate/upload">Upload Gambar</a>
+      </div>
+    </div>
+
+    <a href="/tutorial">Tutorial</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="floating">
+    <h1>Sistem Translasi Bahasa Isyarat</h1>
+    <p>Grub Kartini ✨</p>
+  </header>
+
+  <!-- UPLOAD SECTION -->
+  <section class="translate-section">
+    <h2 class="section-title">Translate dengan Upload Gambar</h2>
+    <p class="section-desc">
+      Upload gambar bahasa isyarat untuk dideteksi.
+    </p>
+
+    <div class="translate-container">
+
+      <!-- KIRI : UPLOAD -->
+      <div class="camera-box">
+        <label for="imageInput" class="upload-label" id="uploadLabel">
+          <span>📷 Klik untuk upload gambar</span>
+        </label>
+
+        <input type="file" id="imageInput" accept="image/*" hidden>
+        <img id="preview" class="preview-img" style="display:none;">
+      </div>
+
+      <!-- KANAN : OUTPUT -->
+      <div class="output-box">
+
+        <div class="output-card">
+          <h4>Huruf Terdeteksi</h4>
+          <div class="output-field" id="hasilHuruf">-</div>
+        </div>
+
+        <div class="output-card">
+          <h4>Akurasi</h4>
+          <div class="output-field" id="hasilAkurasi">-</div>
+        </div>
+
+        <!-- ✅ BUTTON HAPUS PINDAH KE SINI -->
+        <button class="btn-delete output-delete" id="btnHapus" style="display:none;">
+          Hapus
+        </button>
+
+      </div>
+
+    </div>
+
+    <button class="btn-start" id="btnDeteksi">Deteksi</button>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    const input = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+    const uploadLabel = document.getElementById("uploadLabel");
+    const btnHapus = document.getElementById("btnHapus");
+    const btnDeteksi = document.getElementById("btnDeteksi");
+
+    input.addEventListener("change", () => {
+      const file = input.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = e => {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+        uploadLabel.style.display = "none";
+        btnHapus.style.display = "inline-block";
+      };
+      reader.readAsDataURL(file);
+    });
+
+    btnHapus.addEventListener("click", () => {
+      input.value = "";
+      preview.src = "";
+      preview.style.display = "none";
+      uploadLabel.style.display = "flex";
+      btnHapus.style.display = "none";
+
+      document.getElementById("hasilHuruf").innerText = "-";
+      document.getElementById("hasilAkurasi").innerText = "-";
+    });
+
+    btnDeteksi.addEventListener("click", () => {
+      if (!input.files[0]) {
+        alert("Silakan upload gambar terlebih dahulu!");
+        return;
+      }
+
+      document.getElementById("hasilHuruf").innerText = "A";
+      document.getElementById("hasilAkurasi").innerText = "95%";
+    });
+  </script>
+
+</body>
+</html>

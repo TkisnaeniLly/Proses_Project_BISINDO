@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutorial Penggunaan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="fade-in">
+
+<!-- NAVBAR (BIAR KONSISTEN) -->
+<nav class="main-nav">
+    <a href="/">Home</a>
+    <a href="/translate/realtime">Translate</a>
+    <a href="/tutorial" class="active">Tutorial</a>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>📘 Tutorial Penggunaan</h1>
+    <p>Pilih metode translasi sesuai kebutuhan ✨</p>
+</header>
+
+<!-- TUTORIAL -->
+<section class="tutorial-section">
+    <div class="tutorial-box">
+
+        <h2>🎥 Tutorial Translate Real-Time</h2>
+
+        <ol>
+            <li><b>Pilih menu Translate → Real-Time</b></li>
+            <li>Izinkan akses kamera</li>
+            <li>Arahkan tangan ke kamera</li>
+            <li>Tunggu hasil huruf muncul</li>
+        </ol>
+
+        <hr style="margin:25px 0; border:1px dashed #ffd6ea;">
+
+        <h2>🖼️ Tutorial Upload Gambar</h2>
+
+        <ol>
+            <li>Pilih menu Translate → Upload Gambar</li>
+            <li>Klik area upload gambar</li>
+            <li>Pilih gambar bahasa isyarat</li>
+            <li>Klik tombol Deteksi</li>
+            <li>Lihat hasil huruf dan akurasi</li>
+        </ol>
+
+    </div>
+</section>
+
+</body>
+</html>

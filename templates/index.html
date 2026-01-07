@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartini AI - Sistem Translasi BISINDO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="fade-in">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Kartini AI</a>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Beranda</a></li>
+                <li class="dropdown">
+                    <a href="#">Fitur Translate</a>
+                    <div class="dropdown-menu">
+                        <a href="/realtime">Kamera Real-Time</a>
+                        <a href="/upload">Unggah Gambar</a>
+                    </div>
+                </li>
+                <li><a href="/tutorial">Tutorial</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="hero container">
+            <h1>Belajar Bahasa Isyarat<br><span style="color: var(--primary)">Dengan Digital</span></h1>
+            <p>Solusi cerdas berbasis Deep Learning untuk Belajar Bahasa Isyarat Indonesia
+                (BISINDO) secara instan dan akurat.</p>
+            <div class="hero-actions">
+                <a href="/realtime" class="glow-btn">Coba Sekarang</a>
+            </div>
+        </header>
+
+        <section class="features container">
+            <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">📹</div>
+                <h3>Deteksi Kamera</h3>
+                <p>Terjemahkan gerakan tangan secara langsung melalui web kamera dengan akurasi temporal tinggi.</p>
+            </div>
+            <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">🖼️</div>
+                <h3>Analisis Gambar</h3>
+                <p>Cukup unggah foto isyarat Anda, dan sistem kami akan mengenali huruf tersebut dalam sekejap.</p>
+            </div>
+            <div class="card">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">🤝</div>
+                <h3>Inklusivitas</h3>
+                <p>Dibangun untuk mendukung komunitas tunarungu agar dapat belajar Bahasa Isyarat dengan mandiri.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-content">
+            <p>© 2026 Grup Kartini. Didesain dengan penuh CINTA untuk inklusivitas.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

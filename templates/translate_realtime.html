@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Detection - Kartini AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="fade-in">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Kartini AI</a>
+            <ul class="nav-links">
+                <li><a href="/">Beranda</a></li>
+                <li class="dropdown">
+                    <a href="#" class="active">Fitur Translate</a>
+                    <div class="dropdown-menu">
+                        <a href="/realtime">Kamera Real-Time</a>
+                        <a href="/upload">Unggah Gambar</a>
+                    </div>
+                </li>
+                <li><a href="/tutorial">Tutorial</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="app-container">
+            <div class="main-view">
+                <img id="videoFeed" src="{{ url_for('video_feed') }}" alt="Real-time Stream">
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-card">
+                    <div class="status-badge" id="statusBadge">
+                        <span
+                            style="display:inline-block; width:10px; height:10px; background:#2E7D32; border-radius:50%; margin-right:5px;"></span>
+                        Kamera Aktif
+                    </div>
+                    <h3 style="margin-bottom: 10px;">Hasil Terjemahan</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Huruf terdeteksi secara
+                        otomatis oleh sistem</p>
+
+                    <div class="result-placeholder" id="predictionResult">
+                        ...
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h3 style="margin-bottom: 15px;">Petunjuk Penggunaan</h3>
+                    <div class="instruction-list">
+                        <div class="instruction-item">
+                            <div class="instruction-icon">💡</div>
+                            <span>Posisikan tangan dengan jelas di depan kamera.</span>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instruction-icon">🕒</div>
+                            <span>Tahan posisi tangan selama 1-2 detik untuk stabilitas.</span>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instruction-icon">✨</div>
+                            <span>Pastikan cahaya ruangan terang dan latar belakang bersih.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/" class="glow-btn" style="text-align: center; width: 100%;">Kembali</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container">
+        <div class="footer-content">
+            <p>© 2026 Grup Kartini. Didesain dengan penuh CINTA untuk inklusivitas.</p>
+        </div>
+    </footer>
+
+    <script>
+        const predictionDiv = document.getElementById('predictionResult');
+
+        async function fetchPrediction() {
+            try {
+                const response = await fetch('/get-realtime-prediction');
+                const data = await response.json();
+                if (data.label) {
+                    predictionDiv.innerText = data.label;
+                }
+            } catch (error) {
+                console.error("Gagal mengambil prediksi:", error);
+            }
+        }
+
+        // Poll every 200ms for responsiveness
+        setInterval(fetchPrediction, 200);
+    </script>
+</body>
+
+</html>

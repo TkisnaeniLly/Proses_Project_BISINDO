@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #FF85A1;
+    /* Sweet Pink */
+    --primary-light: #FFB3C1;
+    --secondary: #F7E3D1;
+    /* Nude / Peach */
+    --accent: #FFC4D6;
+    --bg-main: #FFF5F7;
+    /* Very Light Pinkish White */
+    --bg-card: rgba(255, 255, 255, 0.9);
+    --text-main: #5D4037;
+    /* Warm Brown for better contrast with nude/pink */
+    --text-muted: #8D6E63;
+    --glass-border: rgba(255, 133, 161, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(255, 133, 161, 0.15);
+    --gradient-primary: linear-gradient(135deg, #FF85A1 0%, #F7E3D1 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(255, 133, 161, 0.2) 0%, rgba(247, 227, 209, 0.2) 100%);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* For sticky footer */
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 0% 0%, rgba(255, 133, 161, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(247, 227, 209, 0.2) 0%, transparent 40%);
+}
+
+main {
+    flex: 1;
+    /* Push footer down */
+}
+
+/* --- Layout --- */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- Navigation --- */
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar {
+    padding: 15px 0;
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 245, 247, 0.8);
+    border-bottom: 2px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    opacity: 0.8;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 1;
+    color: var(--primary);
+}
+
+/* --- Improved Dropdown --- */
+.dropdown {
+    position: relative;
+    padding-bottom: 10px;
+    /* Buffer to prevent gap when moving cursor */
+    margin-bottom: -10px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 200px;
+    display: none;
+    box-shadow: var(--glass-shadow);
+    animation: slideUp 0.3s ease-out;
+}
+
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main) !important;
+    opacity: 1 !important;
+}
+
+.dropdown-menu a:hover {
+    background: var(--bg-main);
+    color: var(--primary) !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* --- Hero Section --- */
+
+.hero {
+    padding: 80px 0 40px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    text-align: center;
+    /* Description centered */
+}
+
+.glow-btn {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.05rem;
+    display: inline-block;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(255, 133, 161, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.glow-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 133, 161, 0.4);
+}
+
+/* --- Cards --- */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns for Home Page */
+    gap: 24px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* Specific for tutorial page to keep it 2x2 */
+.tutorial-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 900px !important;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    padding: 32px;
+    border-radius: 28px;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: var(--primary);
+}
+
+.card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-light);
+    box-shadow: var(--glass-shadow);
+}
+
+/* --- App Section --- */
+
+.app-container {
+    padding: 30px 0;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+    align-items: center;
+    /* Vertically centered */
+    min-height: calc(100vh - 200px);
+}
+
+@media (max-width: 900px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.main-view {
+    background: #000;
+    border: 8px solid white;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glass-shadow);
+}
+
+.main-view img,
+.main-view video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    padding: 24px;
+    border-radius: 28px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #E8F5E9;
+    color: #2E7D32;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.result-placeholder {
+    font-size: 5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 20px 0;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Instructions Style --- */
+.instruction-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.instruction-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.instruction-icon {
+    font-size: 1.2rem;
+    background: var(--accent);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+/* --- Loader --- */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--primary-light);
+    border-left-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.fade-in {
+    animation: fadeInAction 0.8s ease-out;
+}
+
+@keyframes fadeInAction {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

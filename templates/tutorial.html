@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Lengkap - Kartini AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .tutorial-container {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: var(--text-main);
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body class="fade-in">
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Kartini AI</a>
+            <ul class="nav-links">
+                <li><a href="/">Beranda</a></li>
+                <li class="dropdown">
+                    <a href="#">Fitur Translate</a>
+                    <div class="dropdown-menu">
+                        <a href="/realtime">Kamera Real-Time</a>
+                        <a href="/upload">Unggah Gambar</a>
+                    </div>
+                </li>
+                <li><a href="/tutorial" class="active">Tutorial</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="tutorial-container">
+        <header class="hero container" style="padding-top: 40px; padding-bottom: 20px;">
+            <h1>Panduan Penggunaan <span style="color: var(--primary)">Kartini AI</span></h1>
+            <p>Pelajari cara menggunakan fitur Real-time dan Upload Gambar untuk belajar bahasa isyarat dengan mudah.
+            </p>
+        </header>
+
+        <!-- Bagian 1: Real-time -->
+        <div class="container">
+            <h2 class="section-title">Tutorial Real-time</h2>
+            <div class="features tutorial-grid">
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">01</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">�</div>
+                    <h3>Buka Fitur</h3>
+                    <p>Klik menu <b>Fitur Translate</b> lalu pilih <b>Kamera Real-Time</b> untuk memulai deteksi
+                        langsung.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">02</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🆗</div>
+                    <h3>Izin Kamera</h3>
+                    <p>Klik tombol <b>'Allow'</b> atau <b>'Izinkan'</b> pada browser saat sistem meminta akses ke web
+                        kamera Anda.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">03</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">✋</div>
+                    <h3>Posisikan Tangan</h3>
+                    <p>Arahkan telapak tangan ke kamera. Pastikan tangan berada di tengah frame dengan pencahayaan yang
+                        terang.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">04</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">✅</div>
+                    <h3>Lihat Hasil</h3>
+                    <p>Tahan posisi tangan selama 1-2 detik. Hasil huruf akan muncul secara otomatis di panel <b>Hasil
+                            Terjemahan</b>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bagian 2: Upload Gambar -->
+        <div class="container">
+            <h2 class="section-title">Tutorial Upload Gambar</h2>
+            <div class="features tutorial-grid">
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">01</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🖼️</div>
+                    <h3>Pilih Gambar</h3>
+                    <p>Buka halaman <b>Unggah Gambar</b> dan klik area <b>'Klik di Sini'</b> untuk memilih file foto
+                        dari perangkat Anda.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">02</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🔍</div>
+                    <h3>Analisis</h3>
+                    <p>Setelah pratinjau muncul, tekan tombol <b>'Analisis Gambar'</b> untuk memproses foto menggunakan
+                        Deep Learning.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">03</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">📊</div>
+                    <h3>Akurasi</h3>
+                    <p>Sistem akan menampilkan huruf yang terdeteksi beserta <b>Tingkat Akurasi</b> dalam bentuk
+                        persentase.</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 2rem; margin-bottom: 15px; color: var(--primary); font-weight: 800;">04</div>
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🔄</div>
+                    <h3>Ganti Foto</h3>
+                    <p>Jika ingin mencoba gambar lain, klik tombol <b>'Ganti Gambar'</b> untuk mengulang proses dari
+                        awal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 60px 0;">
+            <a href="/realtime" class="glow-btn">Coba Fitur Sekarang 🚀</a>
+        </div>
+    </main>
+
+    <footer class="container">
+        <div class="footer-content">
+            <p>© 2026 Grup Kartini. Didesain dengan penuh CINTA untuk inklusivitas.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -6,7 +6,7 @@ cd /d %CURRENT_DIR%
 echo ==============================================
 echo       SEDANG MENJALANKAN KARTINI AI
 echo ==============================================
-echo 1. Membuka Browser ke http://127.0.0.1:5000
+echo 1. Membuka Browser ke http://
 echo 2. Menjalankan Flask Server...
 echo ==============================================
 
